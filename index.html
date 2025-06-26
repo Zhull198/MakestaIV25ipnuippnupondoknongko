@@ -347,11 +347,15 @@
                 faqResponseText.style.display = 'none';
 
                 const context = getPageContext();
-                const prompt = `Anda adalah Panitia AI untuk acara Makesta IV. Gunakan informasi di bawah untuk menjawab pertanyaan.
-                ATURAN PENTING: Jika pertanyaan spesifik menanyakan "jam berapa" atau "kapan" suatu kegiatan, JAWAB HANYA DENGAN JAMNYA SAJA (Contoh: "Kapan pembaiatan?" -> "00.30–04.00").
-                Untuk pertanyaan umum lainnya (misal: "apa saja materinya?"), berikan jawaban singkat berdasarkan informasi yang ada.
-                Jika pertanyaan di luar konteks, jawab dengan sopan bahwa Anda tidak tahu dan arahkan untuk menghubungi kontak panitia.
-                \n\n---\nInformasi Acara:\n${context}\n---\nPertanyaan Peserta: "${question}"\n\nJawaban Anda:`;
+                const prompt = `Anda adalah Panitia AI untuk acara Makesta IV. Anda memiliki pengetahuan umum tentang IPNU-IPPNU dan Makesta (seperti pengertian, tujuan, tanggal lahir, urgensinya, dan lainnya), serta informasi detail acara di bawah ini.
+
+                ATURAN PENTING:
+                1. Jawab SEMUA pertanyaan dengan SINGKAT dan JELAS.
+                2. Jika pertanyaan spesifik menanyakan "jam berapa" atau "kapan" suatu kegiatan dari jadwal, JAWAB HANYA DENGAN JAMNYA SAJA (Contoh: "Kapan pembaiatan?" -> "00.30–04.00").
+                3. Untuk pertanyaan umum (seperti "apa itu Makesta?"), berikan jawaban singkat berdasarkan pengetahuan umum Anda tentang IPNU-IPPNU.
+                4. Jika Anda benar-benar tidak tahu jawabannya, jawab dengan sopan bahwa Anda akan menanyakannya ke panitia lain dan arahkan untuk menghubungi kontak resmi.
+
+                \n\n---\nInformasi Spesifik Acara:\n${context}\n---\nPertanyaan Peserta: "${question}"\n\nJawaban Anda:`;
 
                 try {
                     const response = await callGemini(prompt);
